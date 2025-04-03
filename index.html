@@ -137,6 +137,10 @@
       document.getElementById('startPage').style.display = 'none';
       document.getElementById('gameContainer').style.display = 'flex';
 
+      // Reset score and update display
+      score = 0;
+      scoreDisplay.textContent = 'Score: ' + score;
+
       // Start the game loop
       requestAnimationFrame(loop);
     }
