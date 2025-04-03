@@ -81,6 +81,39 @@
     #pauseButton:active {
       transform: scale(0.95);
     }
+
+    .arrow-buttons {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .arrow-buttons div {
+      display: flex;
+      justify-content: center;
+    }
+
+    .arrow-buttons button {
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+      font-size: 2em;
+      background: white;
+      color: black;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .arrow-buttons button:hover {
+      background: #ddd;
+    }
+
+    .arrow-buttons button:active {
+      transform: scale(0.95);
+    }
   </style>
 </head>
 <body>
@@ -93,6 +126,18 @@
     <h1>Nokia Snake Game</h1>
     <canvas width="600" height="600" id="game"></canvas>
     <button id="pauseButton" onclick="togglePause()">Pause</button>
+    <div class="arrow-buttons">
+      <div>
+        <button onclick="moveUp()">↑</button>
+      </div>
+      <div>
+        <button onclick="moveLeft()">←</button>
+        <button onclick="moveRight()">→</button>
+      </div>
+      <div>
+        <button onclick="moveDown()">↓</button>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -225,21 +270,81 @@
       }
     }
 
-    document.addEventListener('keydown', function (e) {
-      if (e.which === 37 && snake.dx === 0) {
+    function moveUp() {
+      if (snake.dy === 0) {
+        snake.dx = 0;
+        snake.dy = -grid;
+      }
+    }
+
+    function moveDown() {
+      if (snake.dy === 0) {
+        snake.dx = 0;
+        snake.dy = grid;
+      }
+    }
+
+    function moveLeft() {
+      if (snake.dx === 0) {
         snake.dx = -grid;
         snake.dy = 0;
-      } else if (e.which === 38 && snake.dy === 0) {
-        snake.dy = -grid;
-        snake.dx = 0;
-      } else if (e.which === 39 && snake.dx === 0) {
+      }
+    }
+
+    function moveRight() {
+      if (snake.dx === 0) {
         snake.dx = grid;
         snake.dy = 0;
+      }
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.which === 37 && snake.dx === 0) {
+        moveLeft();
+      } else if (e.which === 38 && snake.dy === 0) {
+        moveUp();
+      } else if (e.which === 39 && snake.dx === 0) {
+        moveRight();
       } else if (e.which === 40 && snake.dy === 0) {
-        snake.dy = grid;
-        snake.dx = 0;
+        moveDown();
       }
     });
+
+    // Swipe functionality for mobile
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+
+    canvas.addEventListener('touchstart', function(event) {
+      touchStartX = event.changedTouches[0].screenX;
+      touchStartY = event.changedTouches[0].screenY;
+    }, false);
+
+    canvas.addEventListener('touchend', function(event) {
+      touchEndX = event.changedTouches[0].screenX;
+      touchEndY = event.changedTouches[0].screenY;
+      handleSwipe();
+    }, false);
+
+    function handleSwipe() {
+      let diffX = touchEndX - touchStartX;
+      let diffY = touchEndY - touchStartY;
+
+      if (Math.abs(diffX) > Math.abs(diffY)) {
+        if (diffX > 0 && snake.dx === 0) {
+          moveRight();
+        } else if (diffX < 0 && snake.dx === 0) {
+          moveLeft();
+        }
+      } else {
+        if (diffY > 0 && snake.dy === 0) {
+          moveDown();
+        } else if (diffY < 0 && snake.dy === 0) {
+          moveUp();
+        }
+      }
+    }
   </script>
 </body>
 </html>
