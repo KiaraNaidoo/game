@@ -257,6 +257,46 @@
         snake.dx = 0;
       }
     });
+
+    // Swipe gesture handling
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+
+    document.addEventListener('touchstart', function (e) {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    });
+
+    document.addEventListener('touchend', function (e) {
+      touchEndX = e.changedTouches[0].screenX;
+      touchEndY = e.changedTouches[0].screenY;
+      handleSwipeGesture();
+    });
+
+    function handleSwipeGesture() {
+      let deltaX = touchEndX - touchStartX;
+      let deltaY = touchEndY - touchStartY;
+
+      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        if (deltaX > 0 && snake.dx === 0) {
+          snake.dx = grid;
+          snake.dy = 0;
+        } else if (deltaX < 0 && snake.dx === 0) {
+          snake.dx = -grid;
+          snake.dy = 0;
+        }
+      } else {
+        if (deltaY > 0 && snake.dy === 0) {
+          snake.dy = grid;
+          snake.dx = 0;
+        } else if (deltaY < 0 && snake.dy === 0) {
+          snake.dy = -grid;
+          snake.dx = 0;
+        }
+      }
+    }
   </script>
 </body>
 </html>
