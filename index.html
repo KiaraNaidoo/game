@@ -5,136 +5,272 @@
   <title>Snake Game</title>
   <style>
     :root {
-      --bg: #283618;
-      --fg: #fff;
-      --snake: #588157;
-      --snake-shadow: #28361899;
-      --snake-eye: #232323;
+      /* Default theme: Forest */
+      --bg: #263f34;
+      --fg: #fafffa;
+      --snake: #4ac16d;
+      --snake-shadow: #184d39cc;
+      --snake-eye: #1c2833;
       --snake-tongue: #b80000;
-      --apple: #E63946;
+      --apple: #ff595e;
       --apple-shine: #fff8;
-      --apple-stem: #6c4321;
-      --apple-leaf: #50b05a;
-      --board: #a7c957;
-      --board-grid: #b7e28e;
-      --board-patch: #819c44;
-      --score-bg: #283618bb;
-      --button-bg: #bc6c25;
-      --button-fg: #fff;
-      --button-hover: #99582a;
-      --border: #fff3;
-      --title-shadow: 0 2px 12px #bc6c2560;
-      --footer-bg: #283618ee;
-      --footer-fg: #fff;
-      --footer-border: #bc6c25;
+      --apple-stem: #7e4f2e;
+      --apple-leaf: #86bb6a;
+      --special-fruit: #ffde59;
+      --board: #335c43;
+      --board-grid: #82b29a;
+      --board-patch: #4e7d63;
+      --score-bg: #1f4633c2;
+      --button-bg: #4ac16d;
+      --button-fg: #222;
+      --button-hover: #388e47;
+      --border: #fafffa70;
+      --title-shadow: 0 2px 18px #4ac16d88;
+      --footer-bg: #2e4a3f;
+      --footer-fg: #fafffa;
+      --footer-border: #4ac16d;
     }
     .theme-classic {
-      --bg: #161925;
-      --fg: #f7f7ff;
-      --snake: #67d5b5;
-      --snake-shadow: #12455999;
-      --snake-eye: #1a1a2e;
-      --snake-tongue: #e63946;
-      --apple: #ffd166;
-      --apple-shine: #fff6;
-      --apple-stem: #c9a227;
-      --apple-leaf: #2bb673;
-      --board: #1a1a2e;
-      --board-grid: #283655;
-      --board-patch: #1f4068;
-      --score-bg: #212946c9;
-      --button-bg: #67d5b5;
+      /* Classic: Retro LCD */
+      --bg: #212121;
+      --fg: #e9ff70;
+      --snake: #e9ff70;
+      --snake-shadow: #b6c85099;
+      --snake-eye: #232323;
+      --snake-tongue: #e9635e;
+      --apple: #d7263d;
+      --apple-shine: #ffff;
+      --apple-stem: #b6c850;
+      --apple-leaf: #e9ff70;
+      --special-fruit: #fdd835;
+      --board: #343a40;
+      --board-grid: #b6c85055;
+      --board-patch: #393e46;
+      --score-bg: #232323d1;
+      --button-bg: #e9ff70;
       --button-fg: #222;
-      --button-hover: #40b49e;
-      --border: #67d5b5;
-      --title-shadow: 0 2px 14px #67d5b577;
-      --footer-bg: #161925ee;
-      --footer-fg: #fff;
-      --footer-border: #67d5b5;
+      --button-hover: #b6c850;
+      --border: #e9ff70;
+      --title-shadow: 0 2px 18px #e9ff7080;
+      --footer-bg: #232323;
+      --footer-fg: #e9ff70;
+      --footer-border: #e9ff70;
     }
     .theme-neon {
-      --bg: #19172e;
-      --fg: #fff;
-      --snake: #00fff7;
-      --snake-shadow: #0fffd599;
-      --snake-eye: #0a192f;
-      --snake-tongue: #f72585;
-      --apple: #f72585;
+      /* Neon Cyberpunk */
+      --bg: #0e002e;
+      --fg: #fae;
+      --snake: #00ffd0;
+      --snake-shadow: #00ffd099;
+      --snake-eye: #0e002e;
+      --snake-tongue: #ff008e;
+      --apple: #ff008e;
       --apple-shine: #fff7;
-      --apple-stem: #93003a;
-      --apple-leaf: #03dac6;
-      --board: #21243d;
-      --board-grid: #00fff733;
-      --board-patch: #2a2d4d;
-      --score-bg: #00fff766;
-      --button-bg: #f72585;
+      --apple-stem: #7d0cff;
+      --apple-leaf: #00ffd0;
+      --special-fruit: #ffe347;
+      --board: #1d133b;
+      --board-grid: #00ffd033;
+      --board-patch: #032d37;
+      --score-bg: #341167b9;
+      --button-bg: #ff008e;
       --button-fg: #fff;
-      --button-hover: #b5179e;
-      --border: #00fff7;
-      --title-shadow: 0 2px 22px #00fff777;
-      --footer-bg: #19172eee;
-      --footer-fg: #fff;
-      --footer-border: #00fff7;
+      --button-hover: #8f00ff;
+      --border: #00ffd0;
+      --title-shadow: 0 2px 22px #00ffd077;
+      --footer-bg: #18003a;
+      --footer-fg: #fae;
+      --footer-border: #00ffd0;
     }
     .theme-pastel {
-      --bg: #f8fafd;
-      --fg: #2d3047;
-      --snake: #a28089;
-      --snake-shadow: #b8b3e966;
+      /* Pastel Playful */
+      --bg: #f7f3ff;
+      --fg: #615375;
+      --snake: #b8c1ec;
+      --snake-shadow: #cbc0d399;
       --snake-eye: #ef798a;
       --snake-tongue: #ef798a;
       --apple: #ef798a;
       --apple-shine: #fff8;
-      --apple-stem: #a28089;
-      --apple-leaf: #b8b3e9;
-      --board: #b8b3e9;
-      --board-grid: #ef798a33;
-      --board-patch: #f8fafd;
-      --score-bg: #b8b3e955;
+      --apple-stem: #b8b3e9;
+      --apple-leaf: #b8c1ec;
+      --special-fruit: #ffb7b2;
+      --board: #f3e9ff;
+      --board-grid: #b8c1ec33;
+      --board-patch: #e2eafc;
+      --score-bg: #c1b4d6c2;
       --button-bg: #ef798a;
       --button-fg: #fff;
-      --button-hover: #d56c7e;
+      --button-hover: #b8c1ec;
       --border: #ef798a;
-      --title-shadow: 0 2px 14px #ef798a55;
-      --footer-bg: #b8b3e9cc;
-      --footer-fg: #2d3047;
+      --title-shadow: 0 2px 16px #ef798a55;
+      --footer-bg: #b8c1ec;
+      --footer-fg: #615375;
       --footer-border: #ef798a;
     }
     .theme-oled {
+      /* OLED High Contrast */
       --bg: #000;
-      --fg: #0f0;
-      --snake: #0f0;
+      --fg: #17ff00;
+      --snake: #17ff00;
       --snake-shadow: #0f088a99;
       --snake-eye: #000;
-      --snake-tongue: #f00;
-      --apple: #f00;
+      --snake-tongue: #ff1744;
+      --apple: #ff1744;
       --apple-shine: #fff9;
-      --apple-stem: #0f0;
+      --apple-stem: #17ff00;
       --apple-leaf: #39ff14;
+      --special-fruit: #fff700;
       --board: #222;
-      --board-grid: #0f0a;
+      --board-grid: #17ff0035;
       --board-patch: #0e0e0e;
-      --score-bg: #000c;
-      --button-bg: #0f0;
+      --score-bg: #000d;
+      --button-bg: #17ff00;
       --button-fg: #000;
-      --button-hover: #0a0;
-      --border: #0f0;
-      --title-shadow: 0 2px 18px #00ff0088;
+      --button-hover: #0f0;
+      --border: #17ff00;
+      --title-shadow: 0 2px 18px #17ff0088;
       --footer-bg: #000;
-      --footer-fg: #0f0;
-      --footer-border: #0f0;
+      --footer-fg: #17ff00;
+      --footer-border: #17ff00;
     }
-    html, body {
-      height: 100%;
-      margin: 0;
-      background: var(--bg);
-      font-family: 'Segoe UI', Arial, sans-serif;
-      min-height: 100vh;
-      color: var(--fg);
-      transition: background 0.5s, color 0.4s;
+    /* --- Decorative Dynamic Themes Below --- */
+    .theme-galaxy {
+      /* Galaxy: Cosmic purples, swirling starfields */
+      --bg: #14022e;
+      --fg: #f3e8ff;
+      --snake: #7f63ff;
+      --snake-shadow: #391c6bcc;
+      --snake-eye: #fdfffc;
+      --snake-tongue: #ff96f9;
+      --apple: #fcb900;
+      --apple-shine: #fff6;
+      --apple-stem: #7e4f2e;
+      --apple-leaf: #00ffe0;
+      --special-fruit: #ff4efd;
+      --board: #1e0a3c;
+      --board-grid: #7f63ff44;
+      --board-patch: #3e296b;
+      --score-bg: #2a135dc4;
+      --button-bg: #7f63ff;
+      --button-fg: #fff;
+      --button-hover: #ff4efd;
+      --border: #fdfffc88;
+      --title-shadow: 0 2px 22px #7f63ff88;
+      --footer-bg: #1e0a3c;
+      --footer-fg: #f3e8ff;
+      --footer-border: #7f63ff;
+    }
+    .theme-sunset {
+      /* Sunset: Orange, magenta, gradient sky */
+      --bg: linear-gradient(180deg,#ffb56b 0%,#ff6e91 70%,#2e044e 100%);
+      --fg: #fff7eb;
+      --snake: #fd6d0a;
+      --snake-shadow: #b74e03cc;
+      --snake-eye: #2e044e;
+      --snake-tongue: #ff2e63;
+      --apple: #ff2e63;
+      --apple-shine: #fff7;
+      --apple-stem: #b74e03;
+      --apple-leaf: #ffe156;
+      --special-fruit: #2ec4b6;
+      --board: #ffb56b33;
+      --board-grid: #ff2e6333;
+      --board-patch: #ffe15644;
+      --score-bg: #ffb56b66;
+      --button-bg: #ff6e91;
+      --button-fg: #fff;
+      --button-hover: #fd6d0a;
+      --border: #ff2e63;
+      --title-shadow: 0 2px 18px #ff6e9177;
+      --footer-bg: #2e044e;
+      --footer-fg: #fff7eb;
+      --footer-border: #fd6d0a;
+    }
+    .theme-arcade {
+      /* Arcade: Vibrant blues, magenta, grid lines */
+      --bg: #0b0e3e;
+      --fg: #fff0fc;
+      --snake: #f50057;
+      --snake-shadow: #0c88f5aa;
+      --snake-eye: #fff;
+      --snake-tongue: #21f6ff;
+      --apple: #21f6ff;
+      --apple-shine: #ffffff88;
+      --apple-stem: #16b1ff;
+      --apple-leaf: #0fffca;
+      --special-fruit: #ffea00;
+      --board: #1b1542;
+      --board-grid: #f5005740;
+      --board-patch: #0c88f522;
+      --score-bg: #0c88f5bb;
+      --button-bg: #f50057;
+      --button-fg: #fff;
+      --button-hover: #21f6ff;
+      --border: #21f6ffcc;
+      --title-shadow: 0 2px 19px #21f6ff7a;
+      --footer-bg: #1b1542;
+      --footer-fg: #fff0fc;
+      --footer-border: #f50057;
+    }
+    .theme-bloom {
+      /* Bloom: Spring colors, leaves, floral */
+      --bg: #f6fbe6;
+      --fg: #4a7352;
+      --snake: #95d93b;
+      --snake-shadow: #d4f2be99;
+      --snake-eye: #4a7352;
+      --snake-tongue: #e65a6a;
+      --apple: #e65a6a;
+      --apple-shine: #fff7;
+      --apple-stem: #8b5f30;
+      --apple-leaf: #95d93b;
+      --special-fruit: #f9c846;
+      --board: #e6f9df;
+      --board-grid: #b2e8a6bb;
+      --board-patch: #f4e1e7;
+      --score-bg: #c0e3b0e3;
+      --button-bg: #e65a6a;
+      --button-fg: #fff;
+      --button-hover: #95d93b;
+      --border: #e65a6a;
+      --title-shadow: 0 2px 15px #e65a6a55;
+      --footer-bg: #b2e8a6;
+      --footer-fg: #4a7352;
+      --footer-border: #e65a6a;
+    }
+    .theme-midnight {
+      /* Midnight Prism: Deep blue, rainbow accents */
+      --bg: #0a1633;
+      --fg: #c8e8ff;
+      --snake: #3c9dff;
+      --snake-shadow: #2a53a4cc;
+      --snake-eye: #fff;
+      --snake-tongue: #ffbc00;
+      --apple: #d200ff;
+      --apple-shine: #fff8;
+      --apple-stem: #584cff;
+      --apple-leaf: #3c9dff;
+      --special-fruit: #00ffc8;
+      --board: #14204d;
+      --board-grid: #00ffc822;
+      --board-patch: #3c9dff22;
+      --score-bg: #14204db9;
+      --button-bg: #3c9dff;
+      --button-fg: #fff;
+      --button-hover: #d200ff;
+      --border: #00ffc8bb;
+      --title-shadow: 0 2px 19px #00ffc877;
+      --footer-bg: #14204d;
+      --footer-fg: #c8e8ff;
+      --footer-border: #3c9dff;
     }
     body {
       min-height: 100vh;
+      margin: 0;
+      background: var(--bg);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: var(--fg);
       display: flex;
       flex-direction: column;
     }
@@ -144,12 +280,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
       background: var(--bg);
       flex: 1 0 auto;
       padding-bottom: 72px;
       box-sizing: border-box;
-      transition: background 0.5s;
     }
     #themeSelector {
       position: absolute;
@@ -169,56 +303,84 @@
       margin-bottom: 14px;
       transition: background 0.4s, color 0.4s, border 0.4s;
     }
-    #gameContainer {
+    #fixedGridWrapper {
+      width: 650px;
+      height: 800px;
+      box-sizing: border-box;
       background: var(--board);
       border-radius: 24px;
-      padding: 32px 16px 16px 16px;
       box-shadow: 0 8px 32px #0004;
-      min-width: 340px;
-      min-height: 400px;
-      margin: 2rem 0 1rem 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: background 0.4s;
+      justify-content: flex-start;
+      position: relative;
+      margin: 2rem 0 1rem 0;
+      border: 5px solid var(--border);
+      overflow: hidden;
+      user-select: none;
     }
     #gameTitle {
       color: var(--fg);
       font-size: 2.3em;
-      margin-bottom: 18px;
+      margin: 24px 0 15px 0;
       text-align: center;
       text-shadow: var(--title-shadow);
       letter-spacing: 1px;
       transition: color 0.4s, text-shadow 0.4s;
-    }
-    canvas#game {
-      display: block;
-      margin: 0 auto;
-      width: 600px;
-      height: 600px;
-      border-radius: 16px;
-      background: var(--board);
-      box-shadow: 0 4px 16px #0006;
-      border: 4px solid var(--border);
-      max-width: 95vw;
-      max-height: 80vw;
-      transition: border-color 0.3s, background 0.4s;
-      box-sizing: border-box;
     }
     #score {
       color: var(--fg);
       background: var(--score-bg);
       font-size: 1.35em;
       font-weight: 600;
-      margin-top: 18px;
+      margin-top: 20px;
+      margin-bottom: 8px;
       padding: 8px 26px;
       border-radius: 10px;
-      letter-spacing: 1px;
       min-width: 120px;
       text-align: center;
       box-shadow: 0 1px 8px #0002;
       border: 2px solid var(--border);
       transition: background 0.3s, color 0.3s, border 0.3s;
+      width: 350px;
+      align-self: center;
+    }
+    canvas#game {
+      display: block;
+      margin: 0 auto;
+      width: 600px !important;
+      height: 600px !important;
+      border-radius: 16px;
+      background: var(--board);
+      box-shadow: 0 4px 16px #0006;
+      border: 4px solid var(--border);
+      max-width: 600px;
+      max-height: 600px;
+      transition: border-color 0.3s, background 0.4s;
+      box-sizing: border-box;
+      position: relative;
+    }
+    @media (max-width: 700px) {
+      #mainContainer {
+        padding: 0 0 72px 0;
+      }
+      #fixedGridWrapper {
+        width: 98vw;
+        height: 120vw;
+        min-width: 0;
+        min-height: 0;
+      }
+      canvas#game {
+        width: 94vw !important;
+        height: 94vw !important;
+        max-width: 97vw;
+        max-height: 97vw;
+      }
+      #score {
+        width: 60vw;
+        min-width: 0;
+      }
     }
     #footer {
       position: fixed;
@@ -245,52 +407,42 @@
     #footer a:hover {
       color: var(--apple);
     }
-    @media (max-width: 700px) {
-      #mainContainer {
-        padding: 0 0 72px 0;
-      }
-      #gameContainer {
-        padding: 18px 2vw 14px 2vw;
-      }
-      canvas#game {
-        width: 96vw;
-        height: 96vw;
-        max-width: 97vw;
-        max-height: 97vw;
-      }
-      #footer {
-        font-size: 1em;
-        padding: 10px 0 8px 0;
-      }
-    }
   </style>
 </head>
 <body>
   <div id="mainContainer">
     <select id="themeSelector" aria-label="Choose Theme">
       <option value="">Forest (Default)</option>
-      <option value="classic">Classic</option>
-      <option value="neon">Neon</option>
-      <option value="pastel">Pastel</option>
-      <option value="oled">OLED</option>
+      <option value="classic">Retro LCD</option>
+      <option value="neon">Cyberpunk Neon</option>
+      <option value="pastel">Pastel Playful</option>
+      <option value="oled">OLED Contrast</option>
+      <option value="galaxy">Galaxy Cosmic</option>
+      <option value="sunset">Sunset Gradient</option>
+      <option value="arcade">Arcade Vibrant</option>
+      <option value="bloom">Spring Bloom</option>
+      <option value="midnight">Midnight Prism</option>
     </select>
-    <div id="gameContainer">
+    <div id="fixedGridWrapper">
       <div id="gameTitle">Snake Game</div>
-      <canvas width="600" height="600" id="game"></canvas>
       <div id="score">Score: 0</div>
+      <canvas width="600" height="700" id="game"></canvas>
     </div>
   </div>
   <footer id="footer">
-    &copy; <span id="footer-year"></span> 
+    &copy; <span id="footer-year"></span>
     <a href="https://kiaranaidoo.github.io/Kode/" target="_blank" id="footer-link">Kode</a>
   </footer>
   <script>
     document.getElementById('footer-year').textContent = new Date().getFullYear();
 
-    // --- Theme switching with persistence ---
+    // Theme switching with persistence
     const themeSelector = document.getElementById("themeSelector");
     function setTheme(theme) {
-      document.body.classList.remove("theme-classic", "theme-neon", "theme-pastel", "theme-oled");
+      document.body.classList.remove(
+        "theme-classic", "theme-neon", "theme-pastel", "theme-oled",
+        "theme-galaxy", "theme-sunset", "theme-arcade", "theme-bloom", "theme-midnight"
+      );
       if(theme) document.body.classList.add("theme-" + theme);
       localStorage.setItem('snakeTheme', theme);
     }
@@ -308,32 +460,24 @@
     const ctx = canvas.getContext('2d');
     const scoreDisplay = document.getElementById('score');
 
-    const GRID_SIZE = 24;
-    const COLS = 25, ROWS = 25;
+    const GRID_SIZE = 15;
+    const COLS = 20, ROWS = 20;
     const SNAKE_RADIUS = GRID_SIZE * 0.42;
 
     let snake = [], direction = {x: 1, y: 0}, nextDir = {x: 1, y: 0};
     let apple = {x: 13, y: 13};
-    let specialFruit = null; // {x, y, timer}
+    let specialFruit = null;
     let specialFruitActive = false;
     let score = 0;
     let running = true;
     let tick = 0;
     let grow = 0;
-
-    // Special fruit timing
     let specialFruitInterval = null;
     let specialFruitTimeout = null;
-    let specialFruitDuration = 10; // seconds the special fruit stays
+    let specialFruitDuration = 10;
 
-    // --- Responsive canvas ---
-    function resizeCanvas() {
-      let size = Math.min(window.innerWidth * 0.96, window.innerHeight * 0.8, 600);
-      canvas.width = canvas.height = size;
-      draw();
-    }
+    function resizeCanvas() { draw(); }
     window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
 
     function startGame() {
       snake = [
@@ -351,7 +495,6 @@
       removeSpecialFruit();
       clearInterval(specialFruitInterval);
       specialFruitInterval = setInterval(spawnSpecialFruit, 30000);
-      // First fruit after 30s
       setTimeout(spawnSpecialFruit, 30000);
       requestAnimationFrame(gameLoop);
     }
@@ -371,9 +514,8 @@
       apple = empty[Math.floor(Math.random() * empty.length)];
     }
 
-    // --- Special Fruit ---
     function spawnSpecialFruit() {
-      if (specialFruitActive) return; // Don't spawn if one is already active
+      if (specialFruitActive) return;
       let empty = [];
       for (let x = 0; x < COLS; ++x) {
         for (let y = 0; y < ROWS; ++y) {
@@ -388,8 +530,6 @@
       if (empty.length === 0) return;
       specialFruit = empty[Math.floor(Math.random() * empty.length)];
       specialFruitActive = true;
-
-      // Remove after 10 seconds if not eaten
       specialFruitTimeout = setTimeout(() => {
         removeSpecialFruit();
       }, specialFruitDuration * 1000);
@@ -404,7 +544,6 @@
       }
     }
 
-    // --- Graphics: Background, Apple, Snake, SpecialFruit ---
     function drawBackground() {
       const style = getComputedStyle(document.body);
       const bg = style.getPropertyValue("--bg").trim();
@@ -412,19 +551,172 @@
       const gridColor = style.getPropertyValue("--board-grid").trim();
       const patchColor = style.getPropertyValue("--board-patch").trim();
 
-      ctx.fillStyle = bg;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      if(document.body.classList.contains("theme-neon")) {
+      // Galaxy
+      if(document.body.classList.contains("theme-galaxy")) {
+        ctx.save();
+        let grad = ctx.createRadialGradient(
+          canvas.width/2, canvas.height/2, 50,
+          canvas.width/2, canvas.height/2, Math.max(canvas.width,canvas.height)/1.2
+        );
+        grad.addColorStop(0, "#2e0c52");
+        grad.addColorStop(0.5, "#371d6b");
+        grad.addColorStop(1, "#14022e");
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        for(let i=0; i<60; ++i) {
+          let sx = Math.abs(Math.sin(Date.now()/700+i))*canvas.width;
+          let sy = Math.abs(Math.cos(Date.now()/900+i*2))*canvas.height;
+          ctx.beginPath();
+          ctx.arc(sx, sy, Math.random()*1.9+0.7, 0, 2*Math.PI);
+          ctx.fillStyle = `rgba(255,255,255,${0.6+0.4*Math.random()})`;
+          ctx.fill();
+        }
+        ctx.save();
+        ctx.translate(canvas.width/2, canvas.height/2);
+        ctx.rotate(Date.now()/40000);
+        for(let i=0; i<5; ++i) {
+          ctx.beginPath();
+          for(let t=0; t<Math.PI*2; t+=0.07) {
+            let r = 200 + 22*Math.sin(t*7+i);
+            ctx.lineTo(Math.cos(t+i)*r, Math.sin(t+i)*r);
+          }
+          ctx.strokeStyle = `rgba(255,78,253,0.08)`;
+          ctx.lineWidth = 7.5-i;
+          ctx.stroke();
+        }
+        ctx.restore();
+        ctx.restore();
+      } else if(document.body.classList.contains("theme-sunset")) {
+        let grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        let t = Math.sin(Date.now()/1500)*0.1+0.5;
+        grad.addColorStop(0, "#ffb56b");
+        grad.addColorStop(0.45+t*0.2, "#ff6e91");
+        grad.addColorStop(1, "#2e044e");
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+        ctx.arc(canvas.width/2, canvas.height*0.83, 96+12*Math.sin(Date.now()/600), 0, 2*Math.PI);
+        ctx.fillStyle = "#ffe15644";
+        ctx.globalAlpha = 1;
+        ctx.shadowColor = "#ffe156";
+        ctx.shadowBlur = 38;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        for(let i=0; i<4; ++i) {
+          ctx.beginPath();
+          let cx = canvas.width/3 + i*canvas.width/6 + Math.sin(Date.now()/700+i)*30;
+          let cy = 120+i*30+Math.cos(Date.now()/800+i*2)*18;
+          ctx.ellipse(cx, cy, 50, 18, 0, 0, Math.PI*2);
+          ctx.fillStyle = "#fff5";
+          ctx.globalAlpha = 0.38;
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+      } else if(document.body.classList.contains("theme-arcade")) {
+        ctx.save();
+        ctx.fillStyle = "#0b0e3e";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeStyle = "#21f6ff44";
+        ctx.lineWidth = 2;
+        let offset = (Date.now()/50)%30;
+        for(let x=0; x<canvas.width; x+=30) {
+          ctx.beginPath();
+          ctx.moveTo(x+offset, 0);
+          ctx.lineTo(x+offset, canvas.height);
+          ctx.stroke();
+        }
+        for(let y=0; y<canvas.height; y+=30) {
+          ctx.beginPath();
+          ctx.moveTo(0, y+offset);
+          ctx.lineTo(canvas.width, y+offset);
+          ctx.stroke();
+        }
+        for(let y=0; y<canvas.height; y+=6) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(canvas.width, y);
+          ctx.strokeStyle = "#f5005722";
+          ctx.globalAlpha = 0.7;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+        ctx.globalAlpha = 1;
+        ctx.restore();
+      } else if(document.body.classList.contains("theme-bloom")) {
+        ctx.save();
+        ctx.fillStyle = "#f6fbe6";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        for(let i=0; i<7; ++i) {
+          ctx.save();
+          ctx.translate(
+            (canvas.width/6)*i + Math.sin(Date.now()/1100+i)*38,
+            55+Math.cos(Date.now()/1000+i)*16
+          );
+          ctx.rotate(Math.PI/12*Math.sin(Date.now()/700+i));
+          ctx.beginPath();
+          ctx.ellipse(0, 0, 18+8*Math.abs(Math.sin(Date.now()/600+i)), 40, 0, 0, Math.PI*2);
+          ctx.fillStyle = "#95d93b33";
+          ctx.fill();
+          ctx.restore();
+        }
+        for(let i=0; i<4; ++i) {
+          ctx.save();
+          let cx = (canvas.width/5)*(i+1), cy = 180+Math.sin(Date.now()/800+i)*20;
+          for(let p=0;p<6;p++) {
+            ctx.beginPath();
+            ctx.ellipse(
+              cx+Math.cos(p*Math.PI/3)*12, cy+Math.sin(p*Math.PI/3)*12,
+              10, 18, p*Math.PI/3, 0, Math.PI*2
+            );
+            ctx.fillStyle = "#e65a6a44";
+            ctx.fill();
+          }
+          ctx.beginPath();
+          ctx.arc(cx, cy, 9, 0, 2*Math.PI);
+          ctx.fillStyle = "#f9c846aa";
+          ctx.fill();
+          ctx.restore();
+        }
+        ctx.restore();
+      } else if(document.body.classList.contains("theme-midnight")) {
+        ctx.save();
+        let grad = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
+        grad.addColorStop(0, "#0a1633");
+        grad.addColorStop(1, "#1a2d4d");
+        ctx.fillStyle = grad;
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        for(let i=0;i<6;i++){
+          ctx.save();
+          ctx.globalAlpha = 0.13+0.1*Math.abs(Math.sin(Date.now()/1100+i));
+          ctx.strokeStyle = ["#ffbc00","#ff0080","#00ffc8","#d200ff","#3c9dff","#fff"][i];
+          ctx.lineWidth = 10+6*Math.abs(Math.sin(Date.now()/700+i));
+          ctx.beginPath();
+          ctx.moveTo(canvas.width/2, canvas.height/2);
+          ctx.lineTo(canvas.width*Math.sin(i+Date.now()/1300), canvas.height*Math.cos(i+Date.now()/1300));
+          ctx.stroke();
+          ctx.restore();
+        }
+        for(let i=0;i<8;i++){
+          ctx.beginPath();
+          let orbX = canvas.width/4 + (i%4)*canvas.width/6 + Math.sin(Date.now()/600+i)*30;
+          let orbY = 70 + (i/4|0)*100 + Math.cos(Date.now()/800+i*2)*28;
+          ctx.arc(orbX, orbY, 16+Math.abs(Math.sin(Date.now()/700+i))*7, 0, Math.PI*2);
+          ctx.fillStyle = ["#ffbc0044","#ff008033","#00ffc844","#d200ff44","#3c9dff33","#fff3","#ffbc0035","#00ffc835"][i%8];
+          ctx.fill();
+        }
+        ctx.restore();
+      } else if(document.body.classList.contains("theme-neon")) {
         const now = Date.now()/500;
         ctx.save();
         for(let i=0; i<canvas.width; i+=24) {
           ctx.beginPath();
           ctx.moveTo(i, 0);
           ctx.lineTo(i, canvas.height);
-          ctx.strokeStyle = `rgba(0,255,247,${0.1 + 0.1 * Math.sin(now+i/30)})`;
+          ctx.strokeStyle = `rgba(0,255,208,${0.13 + 0.13 * Math.sin(now+i/30)})`;
           ctx.lineWidth = 2 + 2*Math.abs(Math.sin(now+i/80));
-          ctx.shadowColor = "#00fff7";
+          ctx.shadowColor = "#00ffd0";
           ctx.shadowBlur = 9;
           ctx.stroke();
         }
@@ -432,9 +724,9 @@
           ctx.beginPath();
           ctx.moveTo(0, i);
           ctx.lineTo(canvas.width, i);
-          ctx.strokeStyle = `rgba(0,255,247,${0.08 + 0.07 * Math.cos(now+i/28)})`;
+          ctx.strokeStyle = `rgba(0,255,208,${0.12 + 0.09 * Math.cos(now+i/28)})`;
           ctx.lineWidth = 2 + 1.5*Math.abs(Math.cos(now+i/65));
-          ctx.shadowColor = "#00fff7";
+          ctx.shadowColor = "#00ffd0";
           ctx.shadowBlur = 7;
           ctx.stroke();
         }
@@ -446,9 +738,9 @@
             10+6*Math.abs(Math.sin(now+i)),
             0, 2*Math.PI
           );
-          ctx.fillStyle = `rgba(247,37,133,${0.15 + 0.12*Math.abs(Math.sin(now+i))}`;
-          ctx.shadowColor = "#f72585";
-          ctx.shadowBlur = 20;
+          ctx.fillStyle = `rgba(255,0,142,${0.15 + 0.12*Math.abs(Math.sin(now+i))}`;
+          ctx.shadowColor = "#ff008e";
+          ctx.shadowBlur = 18;
           ctx.fill();
         }
         ctx.restore();
@@ -462,7 +754,7 @@
             24+10*Math.abs(Math.sin(Date.now()/1000+i)),
             0, 2*Math.PI
           );
-          ctx.fillStyle = i%2===0 ? "#ef798a33" : "#b8b3e944";
+          ctx.fillStyle = i%2===0 ? "#ef798a33" : "#b8c1ec55";
           ctx.globalAlpha = 0.33;
           ctx.fill();
         }
@@ -475,7 +767,7 @@
           ctx.beginPath();
           ctx.moveTo(i*canvas.width/COLS, 0);
           ctx.lineTo(i*canvas.width/COLS, canvas.height);
-          ctx.strokeStyle = `rgba(0,255,0,${0.14 + 0.12*Math.abs(Math.sin(now+i))})`;
+          ctx.strokeStyle = `rgba(23,255,0,${0.14 + 0.12*Math.abs(Math.sin(now+i))})`;
           ctx.lineWidth = 1;
           ctx.stroke();
         }
@@ -483,7 +775,7 @@
           ctx.beginPath();
           ctx.moveTo(0, y*canvas.height/ROWS);
           ctx.lineTo(canvas.width, y*canvas.height/ROWS);
-          ctx.strokeStyle = `rgba(0,255,0,${0.11 + 0.1*Math.abs(Math.cos(now+y))})`;
+          ctx.strokeStyle = `rgba(23,255,0,${0.11 + 0.1*Math.abs(Math.cos(now+y))})`;
           ctx.lineWidth = 1;
           ctx.stroke();
         }
@@ -491,7 +783,7 @@
           ctx.beginPath();
           ctx.moveTo(0, y);
           ctx.lineTo(canvas.width, y);
-          ctx.strokeStyle = "rgba(0,255,0,0.04)";
+          ctx.strokeStyle = "rgba(23,255,0,0.07)";
           ctx.lineWidth = 2;
           ctx.stroke();
         }
@@ -527,11 +819,12 @@
             0, 2*Math.PI
           );
           ctx.fillStyle = patchColor;
-          ctx.globalAlpha = 0.1;
+          ctx.globalAlpha = 0.13;
           ctx.fill();
         }
         ctx.globalAlpha = 1;
       } else {
+        // Default forest
         ctx.fillStyle = board;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         for(let i=0; i<18; i++) {
@@ -608,22 +901,21 @@
 
     function drawSpecialFruit() {
       if (!specialFruitActive || !specialFruit) return;
+      const style = getComputedStyle(document.body);
+      const SPECIAL_COLOR = style.getPropertyValue('--special-fruit').trim() || "#fff700";
       const cx = (specialFruit.x+0.5)*canvas.width/COLS;
       const cy = (specialFruit.y+0.5)*canvas.height/ROWS;
-      const FR = GRID_SIZE * 0.42 * (1 + 0.13 * Math.sin(Date.now()/200)); // pulse
-      // Rainbow gradient
+      const FR = GRID_SIZE * 0.46 * (1 + 0.15 * Math.sin(Date.now()/200));
       let grad = ctx.createRadialGradient(cx, cy, 2, cx, cy, FR);
       grad.addColorStop(0.1, "#fff");
-      grad.addColorStop(0.2, "#f0c");
-      grad.addColorStop(0.4, "#ff0");
-      grad.addColorStop(0.7, "#0ff");
-      grad.addColorStop(1, "#f0c");
+      grad.addColorStop(0.3, SPECIAL_COLOR);
+      grad.addColorStop(1, "#fff70000");
       ctx.beginPath();
       ctx.arc(cx, cy, FR, 0, 2*Math.PI);
       ctx.fillStyle = grad;
-      ctx.shadowColor = "#fff";
+      ctx.shadowColor = SPECIAL_COLOR;
       ctx.shadowBlur = 18;
-      ctx.globalAlpha = 0.88;
+      ctx.globalAlpha = 0.93;
       ctx.fill();
       ctx.globalAlpha = 1;
 
@@ -639,10 +931,10 @@
         ctx.rotate(Math.PI / 5);
       }
       ctx.closePath();
-      ctx.fillStyle = "#fff700";
+      ctx.fillStyle = "#fff";
       ctx.globalAlpha = 0.9;
-      ctx.shadowColor = "#fff";
-      ctx.shadowBlur = 10;
+      ctx.shadowColor = SPECIAL_COLOR;
+      ctx.shadowBlur = 8;
       ctx.fill();
       ctx.globalAlpha = 1;
       ctx.shadowBlur = 0;
@@ -669,9 +961,9 @@
         ctx.globalAlpha = 1;
 
         let grad = ctx.createRadialGradient(cx-4, cy-4, 3, cx, cy, SNAKE_RADIUS);
-        grad.addColorStop(0, "#e8f7bb");
-        grad.addColorStop(0.48, SNAKE_COLOR);
-        grad.addColorStop(1, "#2d4c23");
+        grad.addColorStop(0, "#f0f7e6");
+        grad.addColorStop(0.5, SNAKE_COLOR);
+        grad.addColorStop(1, "#1c2833");
         ctx.beginPath();
         ctx.arc(cx, cy, SNAKE_RADIUS, 0, Math.PI*2);
         ctx.fillStyle = grad;
@@ -735,7 +1027,6 @@
       else handleMoveInput("right");
     });
 
-    // --- Touch controls (swipe, tap = move right) ---
     let tsX=0, tsY=0, teX=0, teY=0, touchMoved=false;
     canvas.addEventListener('touchstart', e => {
       touchMoved = false;
