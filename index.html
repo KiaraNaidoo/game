@@ -1,302 +1,838 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Nokia Snake Game :)</title>
   <meta charset="UTF-8">
+  <title>Snake Game</title>
   <style>
+    :root {
+      --bg: #283618;
+      --fg: #fff;
+      --snake: #588157;
+      --snake-shadow: #28361899;
+      --snake-eye: #232323;
+      --snake-tongue: #b80000;
+      --apple: #E63946;
+      --apple-shine: #fff8;
+      --apple-stem: #6c4321;
+      --apple-leaf: #50b05a;
+      --board: #a7c957;
+      --board-grid: #b7e28e;
+      --board-patch: #819c44;
+      --score-bg: #283618bb;
+      --button-bg: #bc6c25;
+      --button-fg: #fff;
+      --button-hover: #99582a;
+      --border: #fff3;
+      --title-shadow: 0 2px 12px #bc6c2560;
+      --footer-bg: #283618ee;
+      --footer-fg: #fff;
+      --footer-border: #bc6c25;
+    }
+    .theme-classic {
+      --bg: #161925;
+      --fg: #f7f7ff;
+      --snake: #67d5b5;
+      --snake-shadow: #12455999;
+      --snake-eye: #1a1a2e;
+      --snake-tongue: #e63946;
+      --apple: #ffd166;
+      --apple-shine: #fff6;
+      --apple-stem: #c9a227;
+      --apple-leaf: #2bb673;
+      --board: #1a1a2e;
+      --board-grid: #283655;
+      --board-patch: #1f4068;
+      --score-bg: #212946c9;
+      --button-bg: #67d5b5;
+      --button-fg: #222;
+      --button-hover: #40b49e;
+      --border: #67d5b5;
+      --title-shadow: 0 2px 14px #67d5b577;
+      --footer-bg: #161925ee;
+      --footer-fg: #fff;
+      --footer-border: #67d5b5;
+    }
+    .theme-neon {
+      --bg: #19172e;
+      --fg: #fff;
+      --snake: #00fff7;
+      --snake-shadow: #0fffd599;
+      --snake-eye: #0a192f;
+      --snake-tongue: #f72585;
+      --apple: #f72585;
+      --apple-shine: #fff7;
+      --apple-stem: #93003a;
+      --apple-leaf: #03dac6;
+      --board: #21243d;
+      --board-grid: #00fff733;
+      --board-patch: #2a2d4d;
+      --score-bg: #00fff766;
+      --button-bg: #f72585;
+      --button-fg: #fff;
+      --button-hover: #b5179e;
+      --border: #00fff7;
+      --title-shadow: 0 2px 22px #00fff777;
+      --footer-bg: #19172eee;
+      --footer-fg: #fff;
+      --footer-border: #00fff7;
+    }
+    .theme-pastel {
+      --bg: #f8fafd;
+      --fg: #2d3047;
+      --snake: #a28089;
+      --snake-shadow: #b8b3e966;
+      --snake-eye: #ef798a;
+      --snake-tongue: #ef798a;
+      --apple: #ef798a;
+      --apple-shine: #fff8;
+      --apple-stem: #a28089;
+      --apple-leaf: #b8b3e9;
+      --board: #b8b3e9;
+      --board-grid: #ef798a33;
+      --board-patch: #f8fafd;
+      --score-bg: #b8b3e955;
+      --button-bg: #ef798a;
+      --button-fg: #fff;
+      --button-hover: #d56c7e;
+      --border: #ef798a;
+      --title-shadow: 0 2px 14px #ef798a55;
+      --footer-bg: #b8b3e9cc;
+      --footer-fg: #2d3047;
+      --footer-border: #ef798a;
+    }
+    .theme-oled {
+      --bg: #000;
+      --fg: #0f0;
+      --snake: #0f0;
+      --snake-shadow: #0f088a99;
+      --snake-eye: #000;
+      --snake-tongue: #f00;
+      --apple: #f00;
+      --apple-shine: #fff9;
+      --apple-stem: #0f0;
+      --apple-leaf: #39ff14;
+      --board: #222;
+      --board-grid: #0f0a;
+      --board-patch: #0e0e0e;
+      --score-bg: #000c;
+      --button-bg: #0f0;
+      --button-fg: #000;
+      --button-hover: #0a0;
+      --border: #0f0;
+      --title-shadow: 0 2px 18px #00ff0088;
+      --footer-bg: #000;
+      --footer-fg: #0f0;
+      --footer-border: #0f0;
+    }
     html, body {
       height: 100%;
       margin: 0;
-      background: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: var(--bg);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      min-height: 100vh;
+      color: var(--fg);
+      transition: background 0.5s, color 0.4s;
     }
-
-    #startPage {
+    body {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
+    }
+    #mainContainer {
+      width: 100vw;
+      min-height: 100vh;
+      display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
+      flex-direction: column;
+      background: var(--bg);
+      flex: 1 0 auto;
+      padding-bottom: 72px;
+      box-sizing: border-box;
+      transition: background 0.5s;
     }
-
-    #startPage h1 {
-      color: white;
-      font-size: 3em;
-      margin-bottom: 20px;
+    #themeSelector {
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      z-index: 10;
+      background: var(--score-bg);
+      border-radius: 14px;
+      padding: 8px 20px;
+      color: var(--fg);
+      border: 2px solid var(--border);
+      font-size: 1em;
+      font-weight: 600;
+      outline: none;
+      box-shadow: 0 2px 12px #0004;
+      appearance: none;
+      margin-bottom: 14px;
+      transition: background 0.4s, color 0.4s, border 0.4s;
     }
-
-    #startPage button {
-      padding: 15px 30px;
-      font-size: 1.5em;
-      background: white;
-      color: black;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-    }
-
-    #startPage button:hover {
-      background: #ddd;
-    }
-
-    #startPage button:active {
-      transform: scale(0.95);
-    }
-
     #gameContainer {
-      display: none;
+      background: var(--board);
+      border-radius: 24px;
+      padding: 32px 16px 16px 16px;
+      box-shadow: 0 8px 32px #0004;
+      min-width: 340px;
+      min-height: 400px;
+      margin: 2rem 0 1rem 0;
+      display: flex;
       flex-direction: column;
       align-items: center;
+      transition: background 0.4s;
     }
-
-    #gameContainer h1 {
-      color: white;
+    #gameTitle {
+      color: var(--fg);
+      font-size: 2.3em;
+      margin-bottom: 18px;
       text-align: center;
-      margin-bottom: 20px;
+      text-shadow: var(--title-shadow);
+      letter-spacing: 1px;
+      transition: color 0.4s, text-shadow 0.4s;
     }
-
-    canvas {
-      border: 2px solid white;
+    canvas#game {
+      display: block;
+      margin: 0 auto;
+      width: 600px;
+      height: 600px;
+      border-radius: 16px;
+      background: var(--board);
+      box-shadow: 0 4px 16px #0006;
+      border: 4px solid var(--border);
+      max-width: 95vw;
+      max-height: 80vw;
+      transition: border-color 0.3s, background 0.4s;
+      box-sizing: border-box;
     }
-
-    #pauseButton {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 1.2em;
-      background: white;
-      color: black;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-    }
-
-    #pauseButton:hover {
-      background: #ddd;
-    }
-
-    #pauseButton:active {
-      transform: scale(0.95);
-    }
-
     #score {
-      color: white;
-      font-size: 1.5em;
-      margin-top: 20px;
+      color: var(--fg);
+      background: var(--score-bg);
+      font-size: 1.35em;
+      font-weight: 600;
+      margin-top: 18px;
+      padding: 8px 26px;
+      border-radius: 10px;
+      letter-spacing: 1px;
+      min-width: 120px;
+      text-align: center;
+      box-shadow: 0 1px 8px #0002;
+      border: 2px solid var(--border);
+      transition: background 0.3s, color 0.3s, border 0.3s;
+    }
+    #footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100vw;
+      background: var(--footer-bg);
+      color: var(--footer-fg);
+      text-align: center;
+      padding: 14px 0 10px 0;
+      border-top: 1px solid var(--footer-border);
+      font-size: 1.1em;
+      z-index: 100;
+      box-shadow: 0 -2px 16px #0004;
+      user-select: none;
+      transition: background 0.4s, color 0.4s, border 0.4s;
+    }
+    #footer a {
+      color: var(--footer-fg);
+      text-decoration: underline;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    #footer a:hover {
+      color: var(--apple);
+    }
+    @media (max-width: 700px) {
+      #mainContainer {
+        padding: 0 0 72px 0;
+      }
+      #gameContainer {
+        padding: 18px 2vw 14px 2vw;
+      }
+      canvas#game {
+        width: 96vw;
+        height: 96vw;
+        max-width: 97vw;
+        max-height: 97vw;
+      }
+      #footer {
+        font-size: 1em;
+        padding: 10px 0 8px 0;
+      }
     }
   </style>
 </head>
 <body>
-  <div id="startPage">
-    <h1>Welcome to Nokia Snake Game</h1>
-    <button onclick="startGame()">Start Game</button>
+  <div id="mainContainer">
+    <select id="themeSelector" aria-label="Choose Theme">
+      <option value="">Forest (Default)</option>
+      <option value="classic">Classic</option>
+      <option value="neon">Neon</option>
+      <option value="pastel">Pastel</option>
+      <option value="oled">OLED</option>
+    </select>
+    <div id="gameContainer">
+      <div id="gameTitle">Snake Game</div>
+      <canvas width="600" height="600" id="game"></canvas>
+      <div id="score">Score: 0</div>
+    </div>
   </div>
-
-  <div id="gameContainer">
-    <h1>Nokia Snake Game</h1>
-    <canvas width="600" height="600" id="game"></canvas>
-    <button id="pauseButton" onclick="togglePause()">Pause</button>
-    <div id="score">Score: 0</div>
-  </div>
-
+  <footer id="footer">
+    &copy; <span id="footer-year"></span> 
+    <a href="https://kiaranaidoo.github.io/Kode/" target="_blank" id="footer-link">Kode</a>
+  </footer>
   <script>
-    let canvas = document.getElementById('game');
-    let context = canvas.getContext('2d');
-    let pauseButton = document.getElementById('pauseButton');
-    let scoreDisplay = document.getElementById('score');
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
 
-    let grid = 20; // Adjust grid for a bigger canvas
-    let count = 0;
-    let running = true;
-    let paused = false;
-    let score = 0;
-
-    let snake = {
-      x: 160,
-      y: 160,
-      dx: grid,
-      dy: 0,
-      cells: [],
-      maxCells: 4
-    };
-
-    let apple = {
-      x: 320,
-      y: 320
-    };
-
-    function getRandomInt(min, max) {
-      return Math.floor(Math.random() * (max - min)) + min;
+    // --- Theme switching with persistence ---
+    const themeSelector = document.getElementById("themeSelector");
+    function setTheme(theme) {
+      document.body.classList.remove("theme-classic", "theme-neon", "theme-pastel", "theme-oled");
+      if(theme) document.body.classList.add("theme-" + theme);
+      localStorage.setItem('snakeTheme', theme);
     }
+    const savedTheme = localStorage.getItem('snakeTheme') || "";
+    themeSelector.value = savedTheme;
+    setTheme(savedTheme);
+
+    themeSelector.addEventListener("change", function() {
+      setTheme(themeSelector.value);
+      draw();
+    });
+
+    // --- Game setup ---
+    const canvas = document.getElementById('game');
+    const ctx = canvas.getContext('2d');
+    const scoreDisplay = document.getElementById('score');
+
+    const GRID_SIZE = 24;
+    const COLS = 25, ROWS = 25;
+    const SNAKE_RADIUS = GRID_SIZE * 0.42;
+
+    let snake = [], direction = {x: 1, y: 0}, nextDir = {x: 1, y: 0};
+    let apple = {x: 13, y: 13};
+    let specialFruit = null; // {x, y, timer}
+    let specialFruitActive = false;
+    let score = 0;
+    let running = true;
+    let tick = 0;
+    let grow = 0;
+
+    // Special fruit timing
+    let specialFruitInterval = null;
+    let specialFruitTimeout = null;
+    let specialFruitDuration = 10; // seconds the special fruit stays
+
+    // --- Responsive canvas ---
+    function resizeCanvas() {
+      let size = Math.min(window.innerWidth * 0.96, window.innerHeight * 0.8, 600);
+      canvas.width = canvas.height = size;
+      draw();
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
     function startGame() {
-      // Hide start page and show game container
-      document.getElementById('startPage').style.display = 'none';
-      document.getElementById('gameContainer').style.display = 'flex';
-
-      // Reset score and update display
+      snake = [
+        {x: 7, y: 13, dir: {x: 1, y: 0}},
+        {x: 6, y: 13, dir: {x: 1, y: 0}},
+        {x: 5, y: 13, dir: {x: 1, y: 0}},
+      ];
+      direction = {x: 1, y: 0};
+      nextDir = {x: 1, y: 0};
       score = 0;
-      scoreDisplay.textContent = 'Score: ' + score;
-
-      // Start the game loop
-      requestAnimationFrame(loop);
+      grow = 0;
+      running = true;
+      scoreDisplay.textContent = "Score: 0";
+      placeApple();
+      removeSpecialFruit();
+      clearInterval(specialFruitInterval);
+      specialFruitInterval = setInterval(spawnSpecialFruit, 30000);
+      // First fruit after 30s
+      setTimeout(spawnSpecialFruit, 30000);
+      requestAnimationFrame(gameLoop);
     }
 
-    function togglePause() {
-      if (!paused) {
-        paused = true;
-        pauseButton.textContent = "Resume";
-        running = false; // Stop game loop
-      } else {
-        pauseButton.textContent = "Pause";
-        countdown(3); // Start countdown before resuming
+    function placeApple() {
+      let empty = [];
+      for (let x = 0; x < COLS; ++x) {
+        for (let y = 0; y < ROWS; ++y) {
+          if (
+            !snake.some(seg => seg.x === x && seg.y === y) &&
+            (!specialFruit || specialFruit.x !== x || specialFruit.y !== y)
+          ) {
+            empty.push({x, y});
+          }
+        }
+      }
+      apple = empty[Math.floor(Math.random() * empty.length)];
+    }
+
+    // --- Special Fruit ---
+    function spawnSpecialFruit() {
+      if (specialFruitActive) return; // Don't spawn if one is already active
+      let empty = [];
+      for (let x = 0; x < COLS; ++x) {
+        for (let y = 0; y < ROWS; ++y) {
+          if (
+            !snake.some(seg => seg.x === x && seg.y === y) &&
+            (apple.x !== x || apple.y !== y)
+          ) {
+            empty.push({x, y});
+          }
+        }
+      }
+      if (empty.length === 0) return;
+      specialFruit = empty[Math.floor(Math.random() * empty.length)];
+      specialFruitActive = true;
+
+      // Remove after 10 seconds if not eaten
+      specialFruitTimeout = setTimeout(() => {
+        removeSpecialFruit();
+      }, specialFruitDuration * 1000);
+    }
+
+    function removeSpecialFruit() {
+      specialFruit = null;
+      specialFruitActive = false;
+      if (specialFruitTimeout) {
+        clearTimeout(specialFruitTimeout);
+        specialFruitTimeout = null;
       }
     }
 
-    function countdown(seconds) {
-      let countdownInterval = setInterval(() => {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        context.fillStyle = 'white';
-        context.font = '40px Arial';
-        context.textAlign = 'center';
-        context.fillText(seconds, canvas.width / 2, canvas.height / 2);
-        seconds--;
+    // --- Graphics: Background, Apple, Snake, SpecialFruit ---
+    function drawBackground() {
+      const style = getComputedStyle(document.body);
+      const bg = style.getPropertyValue("--bg").trim();
+      const board = style.getPropertyValue("--board").trim();
+      const gridColor = style.getPropertyValue("--board-grid").trim();
+      const patchColor = style.getPropertyValue("--board-patch").trim();
 
-        if (seconds < 0) {
-          clearInterval(countdownInterval);
-          paused = false;
-          running = true; // Resume game loop
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      if(document.body.classList.contains("theme-neon")) {
+        const now = Date.now()/500;
+        ctx.save();
+        for(let i=0; i<canvas.width; i+=24) {
+          ctx.beginPath();
+          ctx.moveTo(i, 0);
+          ctx.lineTo(i, canvas.height);
+          ctx.strokeStyle = `rgba(0,255,247,${0.1 + 0.1 * Math.sin(now+i/30)})`;
+          ctx.lineWidth = 2 + 2*Math.abs(Math.sin(now+i/80));
+          ctx.shadowColor = "#00fff7";
+          ctx.shadowBlur = 9;
+          ctx.stroke();
         }
-      }, 1000);
+        for(let i=0; i<canvas.height; i+=24) {
+          ctx.beginPath();
+          ctx.moveTo(0, i);
+          ctx.lineTo(canvas.width, i);
+          ctx.strokeStyle = `rgba(0,255,247,${0.08 + 0.07 * Math.cos(now+i/28)})`;
+          ctx.lineWidth = 2 + 1.5*Math.abs(Math.cos(now+i/65));
+          ctx.shadowColor = "#00fff7";
+          ctx.shadowBlur = 7;
+          ctx.stroke();
+        }
+        for(let i=0; i<8; ++i) {
+          ctx.beginPath();
+          ctx.arc(
+            (canvas.width/2)+(Math.cos(now+i)*150),
+            (canvas.height/2)+(Math.sin(now+i*1.2)*180),
+            10+6*Math.abs(Math.sin(now+i)),
+            0, 2*Math.PI
+          );
+          ctx.fillStyle = `rgba(247,37,133,${0.15 + 0.12*Math.abs(Math.sin(now+i))}`;
+          ctx.shadowColor = "#f72585";
+          ctx.shadowBlur = 20;
+          ctx.fill();
+        }
+        ctx.restore();
+      } else if(document.body.classList.contains("theme-pastel")) {
+        ctx.save();
+        for(let i=0; i<16; ++i) {
+          ctx.beginPath();
+          ctx.arc(
+            (i%4)*(canvas.width/3)+Math.sin(Date.now()/600+i)*12,
+            Math.floor(i/4)*(canvas.height/5)+Math.cos(Date.now()/800+i)*18,
+            24+10*Math.abs(Math.sin(Date.now()/1000+i)),
+            0, 2*Math.PI
+          );
+          ctx.fillStyle = i%2===0 ? "#ef798a33" : "#b8b3e944";
+          ctx.globalAlpha = 0.33;
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+        ctx.restore();
+      } else if(document.body.classList.contains("theme-oled")) {
+        ctx.save();
+        let now = Date.now()/400;
+        for(let i=1; i<COLS; i++) {
+          ctx.beginPath();
+          ctx.moveTo(i*canvas.width/COLS, 0);
+          ctx.lineTo(i*canvas.width/COLS, canvas.height);
+          ctx.strokeStyle = `rgba(0,255,0,${0.14 + 0.12*Math.abs(Math.sin(now+i))})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+        for(let y=1; y<ROWS; y++) {
+          ctx.beginPath();
+          ctx.moveTo(0, y*canvas.height/ROWS);
+          ctx.lineTo(canvas.width, y*canvas.height/ROWS);
+          ctx.strokeStyle = `rgba(0,255,0,${0.11 + 0.1*Math.abs(Math.cos(now+y))})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+        for(let y=0; y<canvas.height; y+=4) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(canvas.width, y);
+          ctx.strokeStyle = "rgba(0,255,0,0.04)";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        }
+        ctx.restore();
+      } else if(document.body.classList.contains("theme-classic")) {
+        ctx.fillStyle = board;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        for(let i=1; i<COLS; i++) {
+          ctx.beginPath();
+          ctx.moveTo(i*canvas.width/COLS, 0);
+          ctx.lineTo(i*canvas.width/COLS, canvas.height);
+          ctx.strokeStyle = gridColor;
+          ctx.lineWidth = 1.2;
+          ctx.globalAlpha = 0.45;
+          ctx.stroke();
+        }
+        for(let y=1; y<ROWS; y++) {
+          ctx.beginPath();
+          ctx.moveTo(0, y*canvas.height/ROWS);
+          ctx.lineTo(canvas.width, y*canvas.height/ROWS);
+          ctx.strokeStyle = gridColor;
+          ctx.lineWidth = 1.2;
+          ctx.globalAlpha = 0.45;
+          ctx.stroke();
+        }
+        ctx.globalAlpha = 1;
+        for(let i=0; i<8; ++i) {
+          ctx.beginPath();
+          ctx.arc(
+            Math.random()*canvas.width,
+            Math.random()*canvas.height,
+            32+Math.random()*24,
+            0, 2*Math.PI
+          );
+          ctx.fillStyle = patchColor;
+          ctx.globalAlpha = 0.1;
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+      } else {
+        ctx.fillStyle = board;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        for(let i=0; i<18; i++) {
+          const px = Math.random()*canvas.width;
+          const py = Math.random()*canvas.height;
+          const rad = Math.random()*32+16;
+          ctx.beginPath();
+          ctx.arc(px, py, rad, 0, Math.PI*2);
+          ctx.fillStyle = patchColor;
+          ctx.globalAlpha = 0.09;
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+        ctx.strokeStyle = gridColor;
+        ctx.lineWidth = 1;
+        for(let x=1; x<COLS; x++) {
+          ctx.beginPath();
+          ctx.moveTo(x*canvas.width/COLS, 0);
+          ctx.lineTo(x*canvas.width/COLS, canvas.height);
+          ctx.stroke();
+        }
+        for(let y=1; y<ROWS; y++) {
+          ctx.beginPath();
+          ctx.moveTo(0, y*canvas.height/ROWS);
+          ctx.lineTo(canvas.width, y*canvas.height/ROWS);
+          ctx.stroke();
+        }
+      }
+      ctx.globalAlpha = 1;
     }
 
-    function loop() {
-      if (running) {
-        requestAnimationFrame(loop);
+    function drawApple() {
+      const style = getComputedStyle(document.body);
+      const APPLE_RADIUS = GRID_SIZE * 0.39 * (1 + 0.05 * Math.sin(Date.now()/300));
+      const APPLE_COLOR = style.getPropertyValue("--apple").trim();
+      const APPLE_SHINE = style.getPropertyValue("--apple-shine").trim();
+      const APPLE_STEM = style.getPropertyValue("--apple-stem").trim();
+      const APPLE_LEAF = style.getPropertyValue("--apple-leaf").trim();
 
-        if (++count < 4) {
-          return;
-        }
+      const cx = (apple.x+0.5)*canvas.width/COLS;
+      const cy = (apple.y+0.5)*canvas.height/ROWS;
 
-        count = 0;
-        context.clearRect(0, 0, canvas.width, canvas.height);
+      let grad = ctx.createRadialGradient(cx-3, cy-5, 2, cx, cy, APPLE_RADIUS);
+      grad.addColorStop(0, '#fff8');
+      grad.addColorStop(0.2, APPLE_COLOR);
+      grad.addColorStop(1, '#a31926');
+      ctx.beginPath();
+      ctx.arc(cx, cy, APPLE_RADIUS, 0, Math.PI*2);
+      ctx.fillStyle = grad;
+      ctx.shadowColor = "#7e2323";
+      ctx.shadowBlur = 10;
+      ctx.fill();
+      ctx.shadowBlur = 0;
 
-        snake.x += snake.dx;
-        snake.y += snake.dy;
+      ctx.beginPath();
+      ctx.ellipse(cx-APPLE_RADIUS/2, cy-APPLE_RADIUS/3, APPLE_RADIUS/3, APPLE_RADIUS/6, -Math.PI/6, 0, Math.PI*2);
+      ctx.fillStyle = APPLE_SHINE;
+      ctx.globalAlpha = 0.6;
+      ctx.fill();
+      ctx.globalAlpha = 1;
 
-        if (snake.x < 0) {
-          snake.x = canvas.width - grid;
-        } else if (snake.x >= canvas.width) {
-          snake.x = 0;
-        }
+      ctx.beginPath();
+      ctx.moveTo(cx, cy-APPLE_RADIUS+4);
+      ctx.lineTo(cx+2, cy-APPLE_RADIUS-8);
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = APPLE_STEM;
+      ctx.stroke();
 
-        if (snake.y < 0) {
-          snake.y = canvas.height - grid;
-        } else if (snake.y >= canvas.height) {
-          snake.y = 0;
-        }
+      ctx.beginPath();
+      ctx.ellipse(cx+10, cy-APPLE_RADIUS, 8, 4, Math.PI/5, 0, Math.PI*2);
+      ctx.fillStyle = APPLE_LEAF;
+      ctx.fill();
+    }
 
-        snake.cells.unshift({ x: snake.x, y: snake.y });
+    function drawSpecialFruit() {
+      if (!specialFruitActive || !specialFruit) return;
+      const cx = (specialFruit.x+0.5)*canvas.width/COLS;
+      const cy = (specialFruit.y+0.5)*canvas.height/ROWS;
+      const FR = GRID_SIZE * 0.42 * (1 + 0.13 * Math.sin(Date.now()/200)); // pulse
+      // Rainbow gradient
+      let grad = ctx.createRadialGradient(cx, cy, 2, cx, cy, FR);
+      grad.addColorStop(0.1, "#fff");
+      grad.addColorStop(0.2, "#f0c");
+      grad.addColorStop(0.4, "#ff0");
+      grad.addColorStop(0.7, "#0ff");
+      grad.addColorStop(1, "#f0c");
+      ctx.beginPath();
+      ctx.arc(cx, cy, FR, 0, 2*Math.PI);
+      ctx.fillStyle = grad;
+      ctx.shadowColor = "#fff";
+      ctx.shadowBlur = 18;
+      ctx.globalAlpha = 0.88;
+      ctx.fill();
+      ctx.globalAlpha = 1;
 
-        if (snake.cells.length > snake.maxCells) {
-          snake.cells.pop();
-        }
+      // Star icon
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(Date.now()/700);
+      ctx.beginPath();
+      for (let i = 0; i < 5; i++) {
+        ctx.lineTo(0, -FR + 2);
+        ctx.rotate(Math.PI / 5);
+        ctx.lineTo(0, -FR * 0.47);
+        ctx.rotate(Math.PI / 5);
+      }
+      ctx.closePath();
+      ctx.fillStyle = "#fff700";
+      ctx.globalAlpha = 0.9;
+      ctx.shadowColor = "#fff";
+      ctx.shadowBlur = 10;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      ctx.shadowBlur = 0;
+      ctx.restore();
+    }
 
-        context.fillStyle = 'red';
-        context.fillRect(apple.x, apple.y, grid - 1, grid - 1);
+    function drawSnake() {
+      const style = getComputedStyle(document.body);
+      const SNAKE_COLOR = style.getPropertyValue("--snake").trim();
+      const SNAKE_EYE_COLOR = style.getPropertyValue("--snake-eye").trim();
+      const SNAKE_TONGUE_COLOR = style.getPropertyValue("--snake-tongue").trim();
+      const SNAKE_SHADOW_COLOR = style.getPropertyValue("--snake-shadow").trim();
 
-        context.fillStyle = 'blue';
-        snake.cells.forEach(function (cell, index) {
-          context.fillRect(cell.x, cell.y, grid - 1, grid - 1);
+      for(let i=snake.length-1; i>=0; i--) {
+        let seg = snake[i];
+        const cx = (seg.x+0.5)*canvas.width/COLS;
+        const cy = (seg.y+0.5)*canvas.height/ROWS;
 
-          if (cell.x === apple.x && cell.y === apple.y) {
-            snake.maxCells++;
-            score += 10; // Increase score by 10
-            scoreDisplay.textContent = 'Score: ' + score; // Update score display
+        ctx.beginPath();
+        ctx.arc(cx, cy + 3, SNAKE_RADIUS, 0, Math.PI*2);
+        ctx.fillStyle = SNAKE_SHADOW_COLOR;
+        ctx.globalAlpha = 0.5;
+        ctx.fill();
+        ctx.globalAlpha = 1;
 
-            apple.x = getRandomInt(0, canvas.width / grid) * grid;
-            apple.y = getRandomInt(0, canvas.height / grid) * grid;
+        let grad = ctx.createRadialGradient(cx-4, cy-4, 3, cx, cy, SNAKE_RADIUS);
+        grad.addColorStop(0, "#e8f7bb");
+        grad.addColorStop(0.48, SNAKE_COLOR);
+        grad.addColorStop(1, "#2d4c23");
+        ctx.beginPath();
+        ctx.arc(cx, cy, SNAKE_RADIUS, 0, Math.PI*2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        if(i === 0) {
+          let dx = seg.dir.x, dy = seg.dir.y;
+          let ex = cx + (dx*7 || 0) + (dy !== 0 ? 6 : 0);
+          let ey = cy + (dy*7 || 0) + (dx !== 0 ? 6 : 0);
+          ctx.beginPath();
+          ctx.arc(ex-5*dy, ey-5*dx, 3.5, 0, Math.PI*2);
+          ctx.arc(ex+5*dy, ey+5*dx, 3.5, 0, Math.PI*2);
+          ctx.fillStyle = SNAKE_EYE_COLOR;
+          ctx.fill();
+
+          if(tick%12 < 6) {
+            ctx.save();
+            ctx.strokeStyle = SNAKE_TONGUE_COLOR;
+            ctx.lineWidth = 2.3;
+            ctx.beginPath();
+            ctx.moveTo(cx + dx*(SNAKE_RADIUS-2), cy + dy*(SNAKE_RADIUS-2));
+            let tx = cx + dx*(SNAKE_RADIUS+14);
+            let ty = cy + dy*(SNAKE_RADIUS+14);
+            ctx.lineTo(tx, ty);
+            ctx.moveTo(tx-3*dy, ty+3*dx);
+            ctx.lineTo(tx+3*dy, ty-3*dx);
+            ctx.stroke();
+            ctx.restore();
           }
+        }
+      }
+    }
 
-          for (let i = index + 1; i < snake.cells.length; i++) {
-            if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
-              snake.x = 160;
-              snake.y = 160;
-              snake.cells = [];
-              snake.maxCells = 4;
-              snake.dx = grid;
-              snake.dy = 0;
-              score = 0; // Reset score to 0
-              scoreDisplay.textContent = 'Score: ' + score; // Update score display
+    function draw() {
+      drawBackground();
+      drawApple();
+      drawSpecialFruit();
+      drawSnake();
+    }
 
-              apple.x = getRandomInt(0, canvas.width / grid) * grid;
-              apple.y = getRandomInt(0, canvas.height / grid) * grid;
-            }
-          }
-        });
-      } else {
-        requestAnimationFrame(loop); // Keep looping but do nothing
+    // --- Controls ---
+    function handleMoveInput(dir) {
+      let d = direction;
+      if (dir === "left" && d.x === 0) nextDir = {x: -1, y: 0};
+      else if (dir === "up" && d.y === 0) nextDir = {x: 0, y: -1};
+      else if (dir === "right" && d.x === 0) nextDir = {x: 1, y: 0};
+      else if (dir === "down" && d.y === 0) nextDir = {x: 0, y: 1};
+      else if (dir === "space") {
+        if (!running) startGame();
       }
     }
 
     document.addEventListener('keydown', function (e) {
-      if (e.which === 37 && snake.dx === 0) {
-        snake.dx = -grid;
-        snake.dy = 0;
-      } else if (e.which === 38 && snake.dy === 0) {
-        snake.dy = -grid;
-        snake.dx = 0;
-      } else if (e.which === 39 && snake.dx === 0) {
-        snake.dx = grid;
-        snake.dy = 0;
-      } else if (e.which === 40 && snake.dy === 0) {
-        snake.dy = grid;
-        snake.dx = 0;
+      if (document.activeElement === themeSelector) return;
+      if (e.key === "ArrowLeft" || e.key === "a") handleMoveInput("left");
+      else if (e.key === "ArrowUp" || e.key === "w") handleMoveInput("up");
+      else if (e.key === "ArrowRight" || e.key === "d") handleMoveInput("right");
+      else if (e.key === "ArrowDown" || e.key === "s") handleMoveInput("down");
+      else if (e.code === "Space") handleMoveInput("space");
+      else if (!running) startGame();
+      else handleMoveInput("right");
+    });
+
+    // --- Touch controls (swipe, tap = move right) ---
+    let tsX=0, tsY=0, teX=0, teY=0, touchMoved=false;
+    canvas.addEventListener('touchstart', e => {
+      touchMoved = false;
+      tsX = e.touches[0].clientX; tsY = e.touches[0].clientY;
+    });
+    canvas.addEventListener('touchmove', e => { touchMoved = true; });
+    canvas.addEventListener('touchend', e => {
+      teX = e.changedTouches[0].clientX; teY = e.changedTouches[0].clientY;
+      let dx = teX-tsX, dy = teY-tsY;
+      if(Math.abs(dx)>Math.abs(dy) && Math.abs(dx)>10) {
+        if(dx>0 && direction.x === 0) nextDir = {x:1, y:0};
+        else if(dx<0 && direction.x === 0) nextDir = {x:-1, y:0};
+      } else if(Math.abs(dy)>10) {
+        if(dy>0 && direction.y === 0) nextDir = {x:0, y:1};
+        else if(dy<0 && direction.y === 0) nextDir = {x:0, y:-1};
+      } else {
+        if (!running) startGame();
+        else handleMoveInput("right");
       }
     });
 
-    // Swipe gesture handling
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let touchEndX = 0;
-    let touchEndY = 0;
-
-    document.addEventListener('touchstart', function (e) {
-      touchStartX = e.changedTouches[0].screenX;
-      touchStartY = e.changedTouches[0].screenY;
+    canvas.addEventListener('click', function() {
+      if (!running) startGame();
+      else handleMoveInput("right");
     });
 
-    document.addEventListener('touchend', function (e) {
-      touchEndX = e.changedTouches[0].screenX;
-      touchEndY = e.changedTouches[0].screenY;
-      handleSwipeGesture();
-    });
+    function gameLoop() {
+      if (!running) return;
+      if (++tick % 6 === 0) {
+        moveSnake();
+      }
+      draw();
+      requestAnimationFrame(gameLoop);
+    }
 
-    function handleSwipeGesture() {
-      let deltaX = touchEndX - touchStartX;
-      let deltaY = touchEndY - touchStartY;
+    function moveSnake() {
+      direction = nextDir;
+      const head = {...snake[0]};
+      head.x += direction.x;
+      head.y += direction.y;
+      head.dir = {...direction};
 
-      if (Math.abs(deltaX) > Math.abs(deltaY)) {
-        if (deltaX > 0 && snake.dx === 0) {
-          snake.dx = grid;
-          snake.dy = 0;
-        } else if (deltaX < 0 && snake.dx === 0) {
-          snake.dx = -grid;
-          snake.dy = 0;
-        }
+      if(head.x < 0) head.x = COLS-1;
+      if(head.x >= COLS) head.x = 0;
+      if(head.y < 0) head.y = ROWS-1;
+      if(head.y >= ROWS) head.y = 0;
+
+      // Eat special fruit
+      if (specialFruitActive && specialFruit && head.x === specialFruit.x && head.y === specialFruit.y) {
+        grow += 5;
+        score += 50;
+        scoreDisplay.textContent = "Score: " + score;
+        removeSpecialFruit();
+      }
+
+      // Eat apple
+      if(head.x === apple.x && head.y === apple.y) {
+        grow += 3;
+        score += 10;
+        scoreDisplay.textContent = "Score: " + score;
+        placeApple();
+      }
+
+      // Collide with self
+      if(snake.some(seg => seg.x === head.x && seg.y === head.y)) {
+        gameOver();
+        return;
+      }
+
+      snake.unshift(head);
+      if(grow > 0) {
+        grow--;
       } else {
-        if (deltaY > 0 && snake.dy === 0) {
-          snake.dy = grid;
-          snake.dx = 0;
-        } else if (deltaY < 0 && snake.dy === 0) {
-          snake.dy = -grid;
-          snake.dx = 0;
-        }
+        snake.pop();
       }
     }
+
+    function gameOver() {
+      running = false;
+      draw();
+      ctx.save();
+      ctx.fillStyle = "rgba(27,27,27,0.92)";
+      ctx.fillRect(0, canvas.height/2-60, canvas.width, 120);
+      ctx.font = "bold 52px Arial";
+      ctx.fillStyle = "#e63946";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("Game Over!", canvas.width/2, canvas.height/2-16);
+      ctx.font = "bold 30px Arial";
+      ctx.fillStyle = "#fff";
+      ctx.fillText("Press Space to Restart", canvas.width/2, canvas.height/2+28);
+      ctx.restore();
+      removeSpecialFruit();
+      clearInterval(specialFruitInterval);
+    }
+
+    startGame();
   </script>
 </body>
 </html>
